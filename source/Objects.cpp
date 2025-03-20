@@ -10,7 +10,7 @@
 #include <iterator>     //back_inserter
 
 #define ASCIIHEX  "ASCIIHexDecode"
-#define ASCII85   "ASCII85Decode"
+//#define ASCII85   "ASCII85Decode"
 #define LZW       "LZWDecode"
 #define FLATE     "FlateDecode"
 #define RUNLENGTH "RunLengthDecode"
