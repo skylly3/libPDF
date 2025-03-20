@@ -1,10 +1,10 @@
-// class PDFParser
+﻿// class PDFParser
 
 #include <fstream>
 #include <string>
 #include "PDFVersion.hpp"
 #include "Objects.hpp"
-#include "Encryption.hpp"
+//#include "Encryption.hpp"  //注释 by jl
 
 #define INCLUDE_PARSER 1
 
@@ -43,10 +43,10 @@ private:
 	int judgeDelimiter(bool skip, istream* is);
 	int judgeType();
 	int judgeType(istream* is);
-	bool gotoEOL();
+	bool gotoEOL();     //到下一行
 	bool gotoEOL(int flag);
 	bool findFooter();
-	void backtoEOL();
+	void backtoEOL();   //到上一行
 	bool findSXref();
 	void readLine(char* buffer, int n);
 	int readTrailer(int position);
@@ -66,7 +66,7 @@ private:
 	bool readArray(Array* array, istream* is);
 	unsigned char* readName();
 	unsigned char* readName(istream* is);
-  uchar* readString();
+	uchar* readString();
 	uchar* readString(istream* is);
 	bool skipSpaces();
 	bool skipSpaces(istream* is);
@@ -76,14 +76,14 @@ private:
 	bool readStream(Stream* stm, bool outputError);
 	bool investigatePages(Indirect* pages, int* pageCount);
 public:
-	PDFParser(char* fileName);
-	ifstream file;
+	PDFParser(istringstream & st);
+	virtual ~PDFParser();
+	istringstream & file;
 	PDFVersion V_header;
 	PDFVersion V_catalog;
 	Dictionary trailer;
-	Dictionary* encrypt;
-	Encryption* encryptObj;
-	Encryption* encryptObj_ex;
+	//Encryption* encryptObj;         //注释 by jl
+	//Encryption* encryptObj_ex;       //注释 by jl
 	int encryptObjNum;
 	bool encrypted;
 	Indirect** Reference;

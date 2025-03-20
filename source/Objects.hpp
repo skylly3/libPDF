@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <string>
-#include <cstddef>
+//#include <cstddef>
 
-#define INCLUDE_OBJECTS 1
+//#define INCLUDE_OBJECTS 1
 
 using namespace std;
 
@@ -46,13 +46,16 @@ private:
 public:
 	Dictionary();
 	Dictionary(Dictionary* original);
+
+	virtual~Dictionary(); //add by skylly
+
 	void Append(unsigned char* key, void* value, int type);
 	void Print(int indent);
 	void Print();
 	int Search(unsigned char* key);
 	bool Read(unsigned char* key, void** value, int* type);
 	bool Read(int index, unsigned char** key, void** value, int* type);
-	void Merge(Dictionary dict2);
+	void Merge(Dictionary& dict2);
 	int getSize();
 	void Delete(int index);
 	bool Update(unsigned char* key, void* value, int type);
@@ -64,6 +67,7 @@ private:
 	vector<int> types;
 public:
 	Array();
+	virtual ~Array();
 	void Append(void* value, int type);
 	void Print();
 	void Print(int indent);
@@ -81,19 +85,21 @@ public:
 	bool objStream;
 	int objStreamNumber;
 	int objStreamIndex;
-	void* value;
+	//void* value;
 	Indirect();
+	virtual ~Indirect();
 };
 
 class uchar{
 public:
 	int length;
-	int elength;
+	//int elength;
 	unsigned char* data;
 	bool decrypted;
-	unsigned char* encrypted;
+	//unsigned char* encrypted;
 	bool hex;
 	uchar();
+	virtual ~uchar();
 };
 
 class Stream{
@@ -109,6 +115,7 @@ public:
 	int elength; // len(encrypted)
 	bool decrypted;
 	Stream();
+	virtual ~Stream();
 	bool Decode();
 	bool Encode();
 };
@@ -116,6 +123,7 @@ public:
 class Page{
 public:
 	Page();
+	virtual ~Page();
 	Indirect* Parent;
 	Dictionary* PageDict;
 	int objNumber;
@@ -133,6 +141,6 @@ int encodeData(unsigned char* decoded, unsigned char* filter, Dictionary* parm, 
 
 int PNGPredictor(unsigned char** pointer, int length, Dictionary* columns);
 
-int byteSize(int n);
+//int byteSize(int n);
 
-uchar* dateString();
+//uchar* dateString();
